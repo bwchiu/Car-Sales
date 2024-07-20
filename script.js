@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         makeSelect.appendChild(option);
     });
     
-    d3.csv('data/car_sales.csv').then(data => {
+    d3.csv('data/car_sales_since2000.csv').then(data => {
         // Log the data to the console for debugging
         console.log("Loaded data:", data);
         
