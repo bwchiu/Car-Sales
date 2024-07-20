@@ -1,1 +1,37 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle Sales and Market Trends</title>
+    <script src="lib/d3.v7.js"></script>
+    <script src="lib/d3-annotation.js"></script>
+    <style>
+        .slide {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="top-slides">
+        <div id="slide1" class="slide active"></div>
+        <div id="slide2" class="slide"></div>
+        <div id="slide3" class="slide"></div>
+        <button id="nextButton">Next</button>
+    </div>
+
+    <div>
+        <label for="makeSelect">Select Make:</label>
+        <select id="makeSelect"></select>
+        <label for="timeFilter">Select Model Year Range:</label>
+        <input type="number" id="startYear" placeholder="Start Year">
+        <input type="number" id="endYear" placeholder="End Year">
+        <button id="filterButton">Filter</button>
+    </div>
+    <div id="filteredChart"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
