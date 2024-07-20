@@ -53,15 +53,21 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Filtered Data for Mercedes:", filteredData.Mercedes, "Mercedes-Benz");
         
         // Create initial charts
-        createLineChart('#slide1', filteredData.BMW, "BMW", annotations='The newer the BMW, the higher the average price.');
-        createLineChart('#slide2', filteredData.Audi, "Audi", annotations='The newer the Audi, the higher the average price.');
-        createLineChart('#slide3', filteredData.Mercedes, "Mercedes", annotations='The newer the Mercedes, the higher the average price.');
+        createLineChart('#slide1', filteredData.BMW, "BMW", annotation='BMW: price stalled');
+        createLineChart('#slide2', filteredData.Audi, "Audi", annotation='Audi: price peaked');
+        createLineChart('#slide3', filteredData.Mercedes, "Mercedes", annotation='Mercedes: price increasing');
         
+        let nextButtonClicks = 0;
+
         // Add event listener to the "Next" button
         nextButton.addEventListener('click', () => {
+            nextButtonClicks++;
             slides[slideIndex].classList.remove('active');
             slideIndex = (slideIndex + 1) % slides.length;
             slides[slideIndex].classList.add('active');
+            if (nextButtonClicks >= 2) {
+                document.getElementById('filterButton').classList.remove('disabled');
+            }
         });
         
         // Add event listener to the filter button
@@ -176,16 +182,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     x: x(new Date(2014, 0, 1)),
                     y: y(d3.mean(data.filter(d => d.year === 2014), d => d.avgPrice)),
-                    dy: 30,
+                    dy: 10,
                     dx: -200,
-                    color: 'black',
-                    subject: {
-                        radius: 5,
-                        radiusPadding: 10,
-                        width: 10,
-                        height: 10,
-                        type: 'circle'
-                    }
+                    color: 'black'
                 }];
     
                 const makeAnnotations = d3.annotation()
